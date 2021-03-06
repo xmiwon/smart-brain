@@ -32,19 +32,19 @@ class Register extends React.Component {
         //fetch by default does a GET request, but we want POST
         // - needs to wrap within''
         //we have to use json to send to backend because we cant just send js object to the backend
-       const { email, password, passwordValidate } = this.state
+       const { email, password, passwordValidate, name } = this.state
 
             if (passwordValidate === password) {
                 console.log('yay same password')
-                
+                //https://safe-sea-61438.herokuapp.com/register
                 //http://localhost:3000/register
-                fetch('https://safe-sea-61438.herokuapp.com/register', {
+                fetch('http://localhost:3001/register', {
                     method: 'post',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        email: this.state.email,
-                        password: this.state.password,
-                        name: this.state.name
+                        email: email,
+                        password: password,
+                        name: name
                     })
                 })
                     .then(response => response.json())

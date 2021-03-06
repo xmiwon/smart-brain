@@ -7,7 +7,7 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 import './App.css';
-import 'tachyons';
+
 
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
@@ -34,7 +34,7 @@ const initialState = {
   user: {
     id: '',
     name: '',
-    email: 'sal',
+    email: '',
     entries: 0,
     joined: ''
   }
@@ -70,27 +70,18 @@ loadUser = (data) => {
   }
 
 
-
-
   displayFaceBox = (box) => {
-    console.log('displayfacebox', box)
     this.setState({ box: box })
-    console.log('box', this.state.box)
   }
-
-
-
 
   onInputChange = (event) => {
     this.setState({ input: event.target.value })
   }
 
-
-
-
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input })
-    fetch('https://safe-sea-61438.herokuapp.com/imageurl', {
+    //https://safe-sea-61438.herokuapp.com/imageurl
+    fetch('http://localhost:3001/imageurl', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -101,7 +92,8 @@ loadUser = (data) => {
       .then(response => {
         console.log('onbuttonsubmit', response)
         if (response) {
-          fetch('https://safe-sea-61438.herokuapp.com/image', {
+          //https://safe-sea-61438.herokuapp.com/image
+          fetch('http://localhost:3001/image', {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -118,8 +110,6 @@ loadUser = (data) => {
       })
       .catch(err => console.log(err))
   }
-
-
 
 
   onRouteChange = (route) => {

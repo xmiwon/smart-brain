@@ -17,12 +17,8 @@ onPasswordChange = (event) => {
 }
 
 onSubmitSignIn = () => {
-    //fetch by default does a GET request, but we want POST
-    // - needs to wrap within''
-    //we have to use json to send to backend because we cant just send js object to the backend
-    
-    //http://localhost:3000/signin
-    fetch('https://safe-sea-61438.herokuapp.com/signin', {
+    //https://safe-sea-61438.herokuapp.com/signin
+    fetch('http://localhost:3001/signin', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
